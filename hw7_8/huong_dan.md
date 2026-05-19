@@ -1,6 +1,7 @@
 ## Run thử để kiểm tra API
 
-### 1. Chạy server
+### 1. Chạy server: Kiểm tra mình đang đứng ở vị trí sample/hw7_8 hay ko. Nếu không thì cần "cd vào thư mục sample/hw7_8"
+![alt text](image.png)
 
 ```bash
 python main.py
