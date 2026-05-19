@@ -87,8 +87,8 @@ Sau khóa học, học viên có thể:
 
 ## 📂 Cấu trúc thư mục
 
-aibrse_couse1/
-│
+```text
+aibrse_course1/
 ├── homework1/ # Python basics
 ├── homework2/ # Functions
 ├── homework3/ # Data structures
@@ -97,6 +97,7 @@ aibrse_couse1/
 ├── homework6/ # Pipeline & API basics
 ├── homework7+8/ # Mini project + exam review
 └── README.md
+```
 
 ---
 
