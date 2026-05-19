@@ -1,10 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Body
 from typing import List, Dict
+from product import Product, filter_available
 
 app = FastAPI()
 
 @app.post("/products/available")
-def get_available_products(payload: Dict):
+# Chú ý, thêm Body(...) để FastAPI hiểu rằng payload sẽ được lấy từ body của request
+def get_available_products(payload: Dict = Body(...)): 
     # Parse input -> Product objects
     products_input = payload.get("products", [])
     products = [
