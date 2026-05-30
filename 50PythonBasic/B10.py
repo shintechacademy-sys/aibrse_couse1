@@ -1,16 +1,9 @@
-class PaymentService:
-
-    def can_pay(
-        self,
-        balance: float,
-        order_total: float
-    ) -> bool:
-        """
-        Input:
-            balance
-            order_total
-
-        Output:
-            True nếu đủ tiền
-        """
-        pass
+def can_pay(
+    balance: float,
+    order_total: float
+) -> bool:
+    """
+    TODO:
+    balance >= order_total
+    """
+    pass

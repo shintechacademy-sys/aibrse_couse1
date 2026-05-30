@@ -1,14 +1,8 @@
-class ShippingService:
-
-  def shipping_fee(
-    self,
-    distance_km: float
-  ) -> int:
+def shipping_fee(distance_km: float) -> int:
     """
-    Input:
-        distance_km
-
-    Output:
-        phí vận chuyển
+    TODO:
+    <=5
+    <=10
+    >10
     """
     pass

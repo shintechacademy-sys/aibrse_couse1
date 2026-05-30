@@ -1,19 +1,39 @@
-class CatalogService:
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List, Dict
 
-    def build_catalog(self, products: list[dict]) -> dict:
-        """
-        Output:
-            dict dạng {id: product_info}
-            nếu trùng id thì giữ sản phẩm sau cùng
-        """
+
+class Product(BaseModel):
+    id: str
+    name: str
+    price: float
+
+
+def build_catalog(
+    products: List[Product]
+) -> Dict[str, Product]:
+    catalog = {}
+
+    for product in products:
+        # TODO:
+        # Gán product vào catalog theo key là product.id
         pass
 
+    return catalog
 
-def build_catalog_api(products: list[dict]) -> dict:
-    service = CatalogService()
-    result = service.build_catalog(products)
+
+app = FastAPI(title="Bai 41")
+
+
+@app.post("/catalog/build")
+def build_catalog_api(products: List[Product]):
+    result = build_catalog(products)
 
     return {
-        "success": True,
         "data": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

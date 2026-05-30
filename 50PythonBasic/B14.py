@@ -1,8 +1,9 @@
-class ValidationService:
+def is_valid_email(email: str) -> bool:
+    """
+    TODO:
 
-    def is_valid_email(self, email: str) -> bool:
-        """
-        Output:
-            True nếu email hợp lệ cơ bản
-        """
-        pass
+    Có ký tự @
+
+    Kết thúc bằng .com
+    """
+    pass

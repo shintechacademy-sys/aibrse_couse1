@@ -1,32 +1,37 @@
-class ProductService:
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
 
-    def filter_available(self, products: list[dict]) -> list[dict]:
-        """
-        Input:
-            products: danh sách sản phẩm
 
-        Output:
-            danh sách sản phẩm còn hàng và đang active
-        """
+class Product(BaseModel):
+    id: int
+    name: str
+    stock: int
+    is_active: bool
+
+
+def filter_available(products: List[Product]) -> List[Product]:
+    result = []
+
+    for product in products:
+        # TODO
         pass
 
+    return result
 
-def get_available_products_api(products: list[dict]) -> dict:
-    """
-    API Input:
-        products
 
-    API Output:
-        {
-            "success": True,
-            "data": [...]
-        }
-    """
-    service = ProductService()
+app = FastAPI(title="Bai 01")
 
-    result = service.filter_available(products)
+
+@app.post("/products/available")
+def filter_available_api(products: List[Product]):
+    result = filter_available(products)
 
     return {
-        "success": True,
         "data": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

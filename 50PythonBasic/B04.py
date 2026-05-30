@@ -1,22 +1,35 @@
-class OrderService:
+from fastapi import FastAPI
+from pydantic import BaseModel
 
-  def order_message(self, status: str) -> str:
+
+class OrderStatusRequest(BaseModel):
+    status: str
+
+
+def order_message(status: str) -> str:
     """
-    Input:
-        status
-
-    Output:
-        thông báo trạng thái
+    TODO:
+    pending
+    confirmed
+    shipping
+    completed
+    cancelled
     """
     pass
 
 
-def order_status_api(status: str) -> dict:
-  service = OrderService()
+app = FastAPI(title="Bai 04")
 
-  message = service.order_message(status)
 
-  return {
-    "success": True,
-    "message": message
-  }
+@app.post("/orders/message")
+def order_message_api(request: OrderStatusRequest):
+    message = order_message(request.status)
+
+    return {
+        "message": message
+    }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

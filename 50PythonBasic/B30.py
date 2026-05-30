@@ -1,13 +1,13 @@
-class ProjectService:
+def progress_percent(
+    done_tasks: int,
+    total_tasks: int
+) -> float:
+    """
+    TODO:
+    Nếu total_tasks == 0:
+        return 0
 
-    def progress_percent(
-        self,
-        done_tasks: int,
-        total_tasks: int
-    ) -> float:
-        """
-        Output:
-            phần trăm hoàn thành công việc
-            nếu total_tasks = 0 thì trả về 0
-        """
-        pass
+    Ngược lại:
+        return done_tasks / total_tasks * 100
+    """
+    pass

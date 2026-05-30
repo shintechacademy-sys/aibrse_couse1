@@ -1,20 +1,42 @@
-class OrderService:
-
-    def latest_order(self, orders: list[dict]) -> dict | None:
-        """
-        Output:
-            đơn hàng có id lớn nhất
-            None nếu danh sách rỗng
-        """
-        pass
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List, Optional
 
 
-def latest_order_api(orders: list[dict]) -> dict:
-    service = OrderService()
+class Order(BaseModel):
+    id: int
 
-    result = service.latest_order(orders)
+
+def latest_order(
+    orders: List[Order]
+) -> Optional[Order]:
+
+    """
+    TODO:
+
+    Tìm order có id lớn nhất
+
+    Nếu rỗng:
+        return None
+    """
+    pass
+
+
+app = FastAPI(title="Bai 16")
+
+
+@app.post("/orders/latest")
+def latest_order_api(
+    orders: List[Order]
+):
+
+    result = latest_order(orders)
 
     return {
-        "success": True,
         "data": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

@@ -1,23 +1,33 @@
-class CouponService:
-
-    def coupon_exists(
-        self,
-        code: str,
-        coupons: list[str]
-    ) -> bool:
-        """
-        Output:
-            True nếu code tồn tại trong coupons
-        """
-        pass
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
 
 
-def coupon_exists_api(code: str, coupons: list[str]) -> dict:
-    service = CouponService()
+class CouponRequest(BaseModel):
+    code: str
+    coupons: List[str]
 
-    exists = service.coupon_exists(code, coupons)
+
+def coupon_exists(code: str, coupons: List[str]) -> bool:
+    """
+    TODO:
+    Kiểm tra code có nằm trong coupons không.
+    """
+    pass
+
+
+app = FastAPI(title="Bai 24")
+
+
+@app.post("/coupons/check")
+def coupon_exists_api(request: CouponRequest):
+    result = coupon_exists(request.code, request.coupons)
 
     return {
-        "success": True,
-        "exists": exists
+        "exists": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

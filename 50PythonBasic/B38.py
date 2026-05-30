@@ -1,12 +1,20 @@
-class ReviewService:
+from pydantic import BaseModel
+from typing import List
 
-    def average_rating(
-        self,
-        reviews: list[dict]
-    ) -> float:
-        """
-        Output:
-            rating trung bình
-            nếu không có review trả về 0
-        """
-        pass
+
+class Review(BaseModel):
+    rating: float
+
+
+def average_rating(
+    reviews: List[Review]
+) -> float:
+    """
+    TODO:
+    Nếu reviews rỗng:
+        return 0
+
+    Ngược lại:
+        tính trung bình rating.
+    """
+    pass

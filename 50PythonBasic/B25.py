@@ -1,26 +1,46 @@
-class ProductService:
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
 
-    def filter_by_category(
-        self,
-        products: list[dict],
-        category: str
-    ) -> list[dict]:
-        """
-        Output:
-            danh sách sản phẩm thuộc category
-        """
+
+class Product(BaseModel):
+    name: str
+    category: str
+
+
+class FilterCategoryRequest(BaseModel):
+    products: List[Product]
+    category: str
+
+
+def filter_by_category(
+    products: List[Product],
+    category: str
+) -> List[Product]:
+    result = []
+
+    for product in products:
+        # TODO
         pass
 
+    return result
 
-def filter_by_category_api(
-    products: list[dict],
-    category: str
-) -> dict:
-    service = ProductService()
 
-    result = service.filter_by_category(products, category)
+app = FastAPI(title="Bai 25")
+
+
+@app.post("/products/filter-by-category")
+def filter_by_category_api(request: FilterCategoryRequest):
+    result = filter_by_category(
+        request.products,
+        request.category
+    )
 
     return {
-        "success": True,
         "data": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

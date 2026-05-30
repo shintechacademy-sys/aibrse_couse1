@@ -1,16 +1,19 @@
-class ProductService:
+from pydantic import BaseModel
+from typing import List, Optional
 
-    def find_product(
-        self,
-        products: list[dict],
-        product_id: str
-    ) -> dict | None:
-        """
-        Input:
-            products
-            product_id
 
-        Output:
-            product hoặc None
-        """
+class Product(BaseModel):
+    id: str
+    name: str
+
+
+def find_product(
+    products: List[Product],
+    product_id: str
+) -> Optional[Product]:
+
+    for product in products:
+        # TODO
         pass
+
+    return None

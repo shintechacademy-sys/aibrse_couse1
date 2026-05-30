@@ -1,26 +1,48 @@
-class FraudDetectionService:
-
-    def detect_anomalies(
-        self,
-        orders: list[dict],
-        threshold: float
-    ) -> list[dict]:
-        """
-        Output:
-            danh sách đơn hàng có total > threshold * avg
-            nếu danh sách rỗng trả về []
-        """
-        pass
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
 
 
-def detect_anomalies_api(
-    orders: list[dict],
+class Order(BaseModel):
+    id: int
+    total: float
+
+
+class AnomalyRequest(BaseModel):
+    orders: List[Order]
     threshold: float
-) -> dict:
-    service = FraudDetectionService()
-    result = service.detect_anomalies(orders, threshold)
+
+
+def detect_anomalies(
+    orders: List[Order],
+    threshold: float
+) -> List[Order]:
+
+    result = []
+
+    # TODO:
+    # Nếu danh sách rỗng return []
+    # Tính avg total
+    # Lọc order có total > threshold * avg
+
+    return result
+
+
+app = FastAPI(title="Bai 46")
+
+
+@app.post("/orders/anomalies")
+def detect_anomalies_api(request: AnomalyRequest):
+    result = detect_anomalies(
+        request.orders,
+        request.threshold
+    )
 
     return {
-        "success": True,
         "data": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

@@ -1,11 +1,9 @@
-class SupportService:
-
-    def ticket_label(
-        self,
-        priority: str
-    ) -> str:
-        """
-        Output:
-            nhãn hiển thị theo mức ưu tiên
-        """
-        pass
+def ticket_label(priority: str) -> str:
+    """
+    TODO:
+    urgent -> "Xử lý ngay"
+    high -> "Ưu tiên cao"
+    normal -> "Bình thường"
+    khác -> "Không xác định"
+    """
+    pass

@@ -1,29 +1,55 @@
-class RecommendationService:
-
-    def related_products(
-        self,
-        product_id: int,
-        products: list[dict],
-        limit: int
-    ) -> list[dict]:
-        """
-        Output:
-            danh sách sản phẩm cùng category,
-            không bao gồm sản phẩm hiện tại,
-            sắp xếp rating giảm dần
-        """
-        pass
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List
 
 
-def related_products_api(
-    product_id: int,
-    products: list[dict],
+class Product(BaseModel):
+    id: int
+    name: str
+    category: str
+    rating: float
+
+
+class RelatedProductRequest(BaseModel):
+    product_id: int
+    products: List[Product]
     limit: int
-) -> dict:
-    service = RecommendationService()
-    result = service.related_products(product_id, products, limit)
+
+
+def related_products(
+    product_id: int,
+    products: List[Product],
+    limit: int
+) -> List[Product]:
+
+    result = []
+
+    # TODO:
+    # 1. Tìm category của product_id
+    # 2. Lọc sản phẩm cùng category
+    # 3. Loại bỏ sản phẩm hiện tại
+    # 4. Sắp xếp rating giảm dần
+    # 5. Lấy tối đa limit sản phẩm
+
+    return result
+
+
+app = FastAPI(title="Bai 44")
+
+
+@app.post("/products/related")
+def related_products_api(request: RelatedProductRequest):
+    result = related_products(
+        request.product_id,
+        request.products,
+        request.limit
+    )
 
     return {
-        "success": True,
         "data": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

@@ -1,16 +1,10 @@
-class AuthService:
-
-  def login(
-    self,
+def login(
     username: str,
     password: str
-  ) -> bool:
+) -> bool:
     """
-    Input:
-        username
-        password
-
-    Output:
-        True / False
+    TODO:
+    admin
+    123456
     """
     pass

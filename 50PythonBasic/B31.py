@@ -1,27 +1,45 @@
-class CustomerService:
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List, Optional
 
-    def find_customer(
-        self,
-        customers: list[dict],
-        phone: str
-    ) -> dict | None:
-        """
-        Output:
-            khách hàng có số điện thoại tương ứng
-            None nếu không tìm thấy
-        """
+
+class Customer(BaseModel):
+    name: str
+    phone: str
+
+
+class FindCustomerRequest(BaseModel):
+    customers: List[Customer]
+    phone: str
+
+
+def find_customer(
+    customers: List[Customer],
+    phone: str
+) -> Optional[Customer]:
+
+    for customer in customers:
+        # TODO
         pass
 
+    return None
 
-def find_customer_api(
-    customers: list[dict],
-    phone: str
-) -> dict:
-    service = CustomerService()
 
-    result = service.find_customer(customers, phone)
+app = FastAPI(title="Bai 31")
+
+
+@app.post("/customers/find-by-phone")
+def find_customer_api(request: FindCustomerRequest):
+    result = find_customer(
+        request.customers,
+        request.phone
+    )
 
     return {
-        "success": True,
         "data": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

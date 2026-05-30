@@ -1,11 +1,24 @@
-class PaymentService:
+from pydantic import BaseModel
+from typing import List
 
-    def refund_total(
-        self,
-        transactions: list[dict]
-    ) -> float:
-        """
-        Output:
-            tổng amount của các giao dịch refund
-        """
+
+class Transaction(BaseModel):
+    type: str
+    amount: float
+
+
+def refund_total(
+    transactions: List[Transaction]
+) -> float:
+    """
+    TODO:
+    Tính tổng amount của các transaction có type là "refund".
+    """
+
+    total = 0
+
+    for transaction in transactions:
+        # TODO
         pass
+
+    return total

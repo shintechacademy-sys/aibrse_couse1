@@ -1,19 +1,37 @@
-class CustomerService:
-
-    def classify_customer(self, total_spent: int) -> str:
-        """
-        Output:
-            normal / silver / gold
-        """
-        pass
+from fastapi import FastAPI
+from pydantic import BaseModel
 
 
-def classify_customer_api(total_spent: int) -> dict:
-    service = CustomerService()
+class CustomerRequest(BaseModel):
+    total_spent: int
 
-    customer_type = service.classify_customer(total_spent)
+
+def classify_customer(total_spent: int) -> str:
+    """
+    TODO:
+
+    normal
+    silver
+    gold
+    """
+    pass
+
+
+app = FastAPI(title="Bai 13")
+
+
+@app.post("/customers/classify")
+def classify_customer_api(request: CustomerRequest):
+
+    result = classify_customer(
+        request.total_spent
+    )
 
     return {
-        "success": True,
-        "customer_type": customer_type
+        "customer_type": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

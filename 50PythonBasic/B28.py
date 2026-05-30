@@ -1,12 +1,14 @@
-class PayrollService:
+def calculate_salary(
+    hours: float,
+    rate: float
+) -> float:
+    """
+    TODO:
+    Nếu hours <= 40:
+        lương = hours * rate
 
-    def calculate_salary(
-        self,
-        hours: float,
-        rate: float
-    ) -> float:
-        """
-        Output:
-            lương theo giờ, có tính overtime nếu quá 40 giờ
-        """
-        pass
+    Nếu hours > 40:
+        40 giờ đầu tính bình thường
+        số giờ vượt tính 1.5 lần rate
+    """
+    pass

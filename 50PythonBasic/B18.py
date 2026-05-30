@@ -1,8 +1,20 @@
-class UserService:
+from pydantic import BaseModel
+from typing import List
 
-    def hide_password(self, users: list[dict]) -> list[dict]:
-        """
-        Output:
-            danh sách user mới không chứa password
-        """
-        pass
+
+class User(BaseModel):
+    id: int
+    username: str
+    password: str
+
+
+def hide_password(
+    users: List[User]
+):
+    """
+    TODO:
+
+    Trả về danh sách user
+    không chứa password
+    """
+    pass

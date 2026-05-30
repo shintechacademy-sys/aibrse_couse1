@@ -1,8 +1,8 @@
-class LoyaltyService:
+def loyalty_points(order_total: int) -> int:
+    """
+    TODO:
+    Cứ 10000 VND = 1 điểm
 
-    def loyalty_points(self, order_total: int) -> int:
-        """
-        Output:
-            số điểm tích lũy
-        """
-        pass
+    Lấy phần nguyên
+    """
+    pass

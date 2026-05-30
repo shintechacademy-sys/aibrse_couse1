@@ -1,8 +1,6 @@
-class AuthService:
-
-    def is_locked(self, failed_attempts: int) -> bool:
-        """
-        Output:
-            True nếu failed_attempts >= giới hạn khóa tài khoản
-        """
-        pass
+def is_locked(failed_attempts: int) -> bool:
+    """
+    TODO:
+    Nếu failed_attempts >= 5 thì tài khoản bị khóa.
+    """
+    pass

@@ -1,16 +1,21 @@
-class OrderService:
+from pydantic import BaseModel
+from typing import List
 
-    def high_value_orders(
-        self,
-        orders: list[dict],
-        min_total: float
-    ) -> list[dict]:
-        """
-        Input:
-            orders
-            min_total
 
-        Output:
-            danh sách đơn hàng thỏa điều kiện
-        """
+class Order(BaseModel):
+    id: int
+    total: float
+
+
+def high_value_orders(
+    orders: List[Order],
+    min_total: float
+) -> List[Order]:
+
+    result = []
+
+    for order in orders:
+        # TODO
         pass
+
+    return result

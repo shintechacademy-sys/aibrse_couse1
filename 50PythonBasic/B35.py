@@ -1,29 +1,39 @@
-class WishlistService:
-
-    def is_wishlisted(
-        self,
-        product_id: str,
-        wishlist: set[str]
-    ) -> bool:
-        """
-        Output:
-            True nếu sản phẩm nằm trong wishlist
-        """
-        pass
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import Set
 
 
-def is_wishlisted_api(
+class WishlistRequest(BaseModel):
+    product_id: str
+    wishlist: Set[str]
+
+
+def is_wishlisted(
     product_id: str,
-    wishlist: set[str]
-) -> dict:
-    service = WishlistService()
+    wishlist: Set[str]
+) -> bool:
+    """
+    TODO:
+    Kiểm tra product_id có nằm trong wishlist không.
+    """
+    pass
 
-    result = service.is_wishlisted(
-        product_id,
-        wishlist
+
+app = FastAPI(title="Bai 35")
+
+
+@app.post("/wishlist/check")
+def is_wishlisted_api(request: WishlistRequest):
+    result = is_wishlisted(
+        request.product_id,
+        request.wishlist
     )
 
     return {
-        "success": True,
         "is_wishlisted": result
     }
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)

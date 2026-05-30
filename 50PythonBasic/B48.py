@@ -1,29 +1,39 @@
-class FlashSaleService:
-
-    def sale_diff(
-        self,
-        old_sale: set[str],
-        new_sale: set[str]
-    ) -> dict:
-        """
-        Output:
-            {
-                "removed": set,
-                "added": set,
-                "kept": set
-            }
-        """
-        pass
+from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import Set
 
 
-def sale_diff_api(
-    old_sale: set[str],
-    new_sale: set[str]
+class SaleDiffRequest(BaseModel):
+    old_sale: Set[str]
+    new_sale: Set[str]
+
+
+def sale_diff(
+    old_sale: Set[str],
+    new_sale: Set[str]
 ) -> dict:
-    service = FlashSaleService()
-    result = service.sale_diff(old_sale, new_sale)
 
-    return {
-        "success": True,
-        "data": result
-    }
+    # TODO:
+    # removed = có trong old_sale nhưng không có trong new_sale
+    # added = có trong new_sale nhưng không có trong old_sale
+    # kept = có trong cả hai
+
+    pass
+
+
+app = FastAPI(title="Bai 48")
+
+
+@app.post("/flash-sale/diff")
+def sale_diff_api(request: SaleDiffRequest):
+    result = sale_diff(
+        request.old_sale,
+        request.new_sale
+    )
+
+    return result
+
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="localhost", port=8000)
